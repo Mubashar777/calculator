@@ -1,9 +1,9 @@
-//selector
+
 const output = document.querySelector(".output");
 const result = document.querySelector(".result");
 const keys = document.querySelectorAll("button");
 
-//eventlistener
+
 keys.forEach(key=>{
     key.addEventListener("click",calculate);
 });
@@ -19,7 +19,7 @@ function calculate(){
     }
 
     if(buttonText === "DEL"){
-        output.textContent = output.textContent.substr(0,output.textContent.length-1);
+        output.textContent = output.textContent(0,output.textContent.length-1);
         return;
     }
 
