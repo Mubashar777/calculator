@@ -1,27 +1,40 @@
-let input = document.getElementById('inputBox');
-let buttons = document.querySelectorAll('button');
+//selector
+const output = document.querySelector(".output");
+const result = document.querySelector(".result");
+const keys = document.querySelectorAll("button");
 
-let string = "";
-let arr = Array.from(buttons);
-arr.forEach(button => {
-    button.addEventListener('click', (e) =>{
-        if(e.target.innerHTML == '='){
-            string = eval(string);
-            input.value = string;
-        }
+//eventlistener
+keys.forEach(key=>{
+    key.addEventListener("click",calculate);
+});
 
-        else if(e.target.innerHTML == 'AC'){
-            string = "";
-            input.value = string;
-        }
-        else if(e.target.innerHTML == 'DEL'){
-            string = string.substring(0, string.length-1);
-            input.value = string;
-        }
-        else{
-            string += e.target.innerHTML;
-            input.value = string;
-        }
-        
-    })
-})
+function calculate(){
+    let buttonText = this.innerText;
+    if(buttonText==="AC"){
+        output.innerText = "";
+        result.innerText = "0";
+        result.style.animation = "";
+        output.style.animation = "";
+        return;
+    }
+
+    if(buttonText === "DEL"){
+        output.textContent = output.textContent.substr(0,output.textContent.length-1);
+        return;
+    }
+
+    if(buttonText === "="){
+        result.innerText = eval(output.innerText);
+        result.style.animation = "big 0.5s ease-in-out";
+        output.style.animation = "small 0.5s ease-in-out";
+        result.style.animationFillMode = "forwards";
+        output.style.animationFillMode = "forwards";
+    }
+
+    else{
+        output.textContent += buttonText;
+        return;
+    }
+
+  
+}
